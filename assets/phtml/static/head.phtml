@@ -7,7 +7,7 @@ $ad_bans	= scandir("$doc_root$ad_ban_loc/");
 $ad_bans	= array_splice($ad_bans, 2);
 
 $web_banner		= $web_bans[floor(rand(0, sizeof($web_bans) - 1))];
-$board_banner	= $web_bans[floor(rand(0, sizeof($board_bans) - 1))];
+$board_banner	= $board_bans[floor(rand(0, sizeof($board_bans) - 1))];
 $ad_num			= floor(rand(0, sizeof($ad_bans) - 1));
 $ad_banner		= $ad_bans[$ad_num];
 $ad_href		= "#";

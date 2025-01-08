@@ -31,15 +31,15 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 	height		: auto;
 }
 
-#web-banner, #page-title, #board-promo, #top-banner, #bottom-banner {
+#web-banner, #page-title, #board-promo, #top-banner, #bottom-banner, #make-post, #make-thread {
 	width	: fit-content;
 	height	: fit-content;
 	margin	: 0 auto;
 }
 
 #make-post, #make-thread {
-	width	: auto;
-	height	: auto;
+	margin-top		: 5px;
+	margin-bottom	: 5px;
 }
 
 #changelog {
@@ -119,4 +119,86 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 	max-width	: 100%;
 	minheight	: 200px;
 	height		: auto;
+}
+
+/* Home Index */
+
+/* Board */
+
+/* Thread */
+
+/* Post */
+
+/* Catalog */
+#catalog {
+	display			: flex;
+	flex-wrap		: wrap;
+	align-items		: center;
+	justify-content	: center;
+	width			: auto;
+	height			: auto;
+}
+
+.catalog-item {
+	width		: 200px;
+	height		: fit-content;
+	max-height	: 250px;
+	margin		: 15px;
+}
+
+.preview-thumb {
+	width		: fit-content;
+	max-width	: 125px;
+	height		: fit-content;
+	max-height	: 125px;
+	margin		: 0 auto;
+	margin-top	: 10px;
+}
+
+.thread-stats {
+	width	: fit-content;
+	height	: 1em;
+	margin	: 10px auto;
+}
+
+.catalog-title {
+	width		: fit-content;
+	max-width	: 190px;
+	height		: fit-content;
+	margin		: 0 auto;
+}
+
+.preview-op {
+	width			: fit-content;
+	max-width		: 190px;
+	height			: fit-content;
+	max-height		: 3.2em;
+	margin			: 0 auto;
+	margin-bottom	: 5px;
+	overflow		: hidden;
+}
+
+/* tooltip */
+.tooltip {
+	position	: relative;
+	display		: inline-block;
+	width		: fit-content;
+	height		: fit-content;
+	margin		: auto 0;
+}
+
+.tooltip .tooltiptext {
+	visibility			: hidden;
+	width				: fit-content;
+	height				: fit-content;
+	background-color	: black;
+	text-align			: center;
+	padding				: 5px 0;
+	border-radius		: 6px;
+	position			: absolute;
+	z-index				: 1;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility	: visibility;
 }
