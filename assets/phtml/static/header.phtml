@@ -1,0 +1,36 @@
+<div id=header>
+	<?php include("$doc_root$static_loc/navi.phtml"); ?>
+
+	<div id=web-banner>
+		<img src=<?php echo "$web_ban_loc$web_banner"; ?> />
+	</div>
+
+	<div id=page-title><b><?php echo $title; ?></b></div>
+
+	<hr/>
+
+	<?php
+		if (str_contains($_SERVER['REQUEST_URI'], 'thread'))
+			echo "<div id=make-post>[ <a id=add-post href=''>Make a Post</a> ]</div>";
+		else if (str_contains($_SERVER['REQUEST_URI'], 'board'))
+			echo "<div id=make-thread[ <a id=add-thread href=''>Make a Thread</a> ]</div>";
+	?>
+
+	<div id=changelog>
+	</div>
+
+	<?php
+		if (str_contains($_SERVER['REQUEST_URI'], 'board')) {
+			echo "
+				<div id=board-promo>
+					<img src=$board_ban_loc$boardbanner />
+				</div>";
+		}
+	?>
+
+	<br/>
+
+	<div id=top-banner><a class=ad-banner href=<?php echo $ad_href; ?>><img id=add-img src=<?php echo "$ad_ban_loc$ad_banner"; ?> /></a></div>
+
+	<hr/>
+</div>

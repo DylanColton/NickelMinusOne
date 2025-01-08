@@ -1,1 +1,1 @@
-# NickeMinusOne
+# NickelMinusOne

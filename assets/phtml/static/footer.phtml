@@ -1,0 +1,26 @@
+<div id=footer>
+	<hr/>
+
+	<div id=bottom-banner><a class=ad-banner href=<?php echo $ad_href; ?>><img id=add-img src=<?php echo "$ad_ban_loc$ad_banner"; ?> /></a></div>
+
+	<hr/>
+
+	<div id=style-select>
+		<select>
+			<?php
+				for ($i = 0; $i < sizeof($styles); $i++)
+					echo "<option value={$styles[$i]}>{$styles[$i]}</option>";
+			?>
+		</select>
+	</div>
+
+	<br/>
+
+	<?php include("$doc_root$static_loc/navi.phtml"); ?>
+
+	<div id=legal-and-about>
+		Lmoa, some legal stuff
+	</div>
+
+	<div id=bottom></div>	
+</div>

@@ -1,0 +1,23 @@
+<?php
+$boards = scandir("$doc_root/board");
+$boards	= array_slice($boards, 2);
+
+$board_list = "[";
+for ($i = 0; $i < sizeof($boards); $i++) {
+	$board_list = "$board_list <a href=/board/{$boards[$i]}/>{$boards[$i]}</a> ";
+	if ($i < sizeof($boards)-1) { $board_list = "$board_list/"; }
+}
+$board_list = "$board_list]";
+
+$navi_opts = "[ <a href=/>Home</a> / <a href=#>Settings</a> / <a id=janny-check href=\"./\">Janny Station</a> ]";
+?>
+
+<div class=navi>
+	<div class=board-list>
+		<?php echo $board_list; ?>
+	</div>
+
+	<div class=navi-options>
+		<?php echo $navi_opts; ?>
+	</div>
+</div>

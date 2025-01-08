@@ -1,0 +1,31 @@
+<?php
+$web_bans	= scandir("$doc_root$web_ban_loc/");
+$web_bans	= array_splice($web_bans, 2);
+$board_bans	= scandir("$doc_root$board_ban_loc/");
+$board_bans	= array_splice($board_bans, 2);
+$ad_bans	= scandir("$doc_root$ad_ban_loc/");
+$ad_bans	= array_splice($ad_bans, 2);
+
+$web_banner		= $web_bans[floor(rand(0, sizeof($web_bans) - 1))];
+$board_banner	= $web_bans[floor(rand(0, sizeof($board_bans) - 1))];
+$ad_num			= floor(rand(0, sizeof($ad_bans) - 1));
+$ad_banner		= $ad_bans[$ad_num];
+$ad_href		= "#";
+
+$style			= $_COOKIE['style'];
+?>
+
+<meta charset=<?php echo $charset; ?>>
+<meta name=author	content=<?php echo $authour; ?>>
+<meta name=desc		content=<?php echo $desc; ?>>
+
+<title><?php echo $title; ?></title>
+
+<link id=struct	rel=stylesheet href=<?php echo "/$struct"; ?>>
+<link id=style	rel=stylesheet href=<?php echo "$style_loc$style"; ?>>
+
+<link id=tabicon rel=icon href=<?php echo "$favicon_loc$favicon"; ?>>
+
+<script src=/js/jquery-3.7.1.min.js></script>
+<script src=/js/event_def.js></script>
+<script src=/js/events.js></script>
