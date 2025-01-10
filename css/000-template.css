@@ -1,0 +1,80 @@
+* {
+	/* Setting Font */
+	font-family		: Arial;
+	font-size		: 16px;
+	font-weight		: 400;
+
+	font-style		: italic;
+	font-variant	: small-caps;
+	
+	line-height		: 1.5;
+	letter-spacing	: 0.5px;
+	word-spacing	: 2px;
+}
+
+#page-container {
+}
+
+/* Header */
+#header	{
+}
+
+#page-title {
+}
+
+#make-post, #make-thread {
+}
+
+#changelog {
+}
+
+.navi {
+}
+
+/* Footer */
+#footer {
+}
+
+#style-select {
+}
+
+#legal-and-about {
+}
+
+/* Catalog */
+.catalog-item {
+}
+
+.thread-stats {
+}
+
+.thread-title {
+}
+
+.preview-op {
+}
+
+/* Thread */
+.post-info {
+}
+
+.post-datetime {
+}
+
+.post-title {
+}
+
+.post-author {
+}
+
+.post-num {
+}
+
+.replies {
+}
+
+.file-info {
+}
+
+.message {
+}

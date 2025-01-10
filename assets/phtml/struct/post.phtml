@@ -1,15 +1,37 @@
-<div <?php echo ($op ? "id=op" : ""); ?> class=post-container>
+<div class="post-container <?php echo ($op ? "op" : ""); ?>">
 	<div class=post-top>
 		<div class=post-info>
+			<span class=post-datetime>2025/01/10(Fri)15:41:05</span>
+
+			<span class=post-title>Title</span>
+
+			<span class=post-name>Anonymous</span>
+
+			<span class=post-num>No.0000000001</span>
 		</div>
 
 		<div class=replies>
+			<span class=reply>>>1</span>
+			<span class=reply>>>2</span>
+			<span class=reply>>>3</span>
+			<span class=reply>>>4</span>
 		</div>
 	</div>
 
-	<div class=file-container>
-	</div>
+	<div class=post-content>
+		<div class=file-container>
+			<div class=file-info>
+				<a class=filename href=/file.png>file.png</a>
+				<span class=file-dim-size>(480x480)4.5MB</span>
+			</div>
 
-	<div class=message>
+			<div class=file>
+				<img />
+			</div>
+		</div>
+
+		<div class=message>
+			This is a message in the post
+		</div>
 	</div>
 </div>
