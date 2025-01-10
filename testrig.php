@@ -30,13 +30,9 @@
 
 	<body>
 		<?php
-			$thread_id		= 1;
-			$num_replies	= 1;
-			$num_media		= 1;
-			$title			= "title";
-			$op_message		= "This is the op message";
+			$op = true;
 
-			include("$doc_root$struct_loc/catalog_item.phtml");
+			include("$doc_root$struct_loc/post.phtml");
 		?>
 	</body>
 </html>

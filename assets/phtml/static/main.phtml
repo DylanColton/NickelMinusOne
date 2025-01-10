@@ -15,6 +15,10 @@
 			include("$doc_root$struct_loc/board.phtml");
 		else if (str_contains($uri_loc, 'janny-station'))
 			include("$doc_root$struct_loc/janny.phtml");
+		else if ($err == 404)
+			include("$doc_root$struct_log/404.phtml");
+		else if ($err == 500)
+			echo "<span class=error>The programmer is having a bad day</span>";
 		else
 			include("$doc_root$struct_loc/home.phtml");
 	

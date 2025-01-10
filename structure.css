@@ -202,3 +202,67 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 .tooltip:hover .tooltiptext {
 	visibility	: visibility;
 }
+
+/* Thread */
+
+/* Post */
+.post-container {
+	width	: fit-content;
+	height	: fit-content;
+	margin	: 5px;
+
+	border	: 1px solid #000000;
+}
+
+.post-top {
+	width		: fit-content;
+	min-height	: 1.1em;
+	height		: fit-content;
+	margin		: 5px;
+
+	border	: 1px solid #000000;
+}
+
+.post-info {
+	width	: fit-content;
+	height	: 1em;
+	width	: 200px;
+	float	: left;
+
+	border	: 1px solid #000000;
+}
+
+.replies {
+	width		: fit-content;
+	max-width	: 200px;
+	width	: 200px;
+	height		: fit-content;
+	height	: 1em;
+	max-height	: 3em;
+	float		: left;
+
+	border		: 1px solid #000000;
+}
+
+.file-container {
+	width		: fit-content;
+	height		: fit-content;
+	width	: 125px;
+	height	: 125px;
+	margin		: 5px;
+	margin-left	: 15px;
+
+	border	: 1px solid #000000;
+}
+
+.message {
+	width		: fit-content;
+	height		: fit-content;
+	width		: 300px;
+	height		: 4em;
+	margin		: 5px;
+	margin-top	: 20px;
+	float		: left;
+
+	border		: 1px solid #000000;
+}
