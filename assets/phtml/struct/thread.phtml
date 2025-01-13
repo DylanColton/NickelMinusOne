@@ -1,2 +1,7 @@
-<div class=thread>
+<div id=<?php echo $thread_no; ?> class=thread>
+	<?php 
+		$sql = "SELECT * FROM Post
+			WHERE ThreadID = $thread_no";
+		$thread = mysqli_query($conn, $sql)[0];
+	?>
 </div>
