@@ -44,6 +44,7 @@
 
 	<body>
 		<?php
+			/*
 			echo "<div class=thread>";
 
 			$op				= true;
@@ -153,6 +154,10 @@
 			include("$doc_root$struct_loc/post.phtml");
 
 			echo "</div>";
+			*/
+
+			$thread_no = 1;
+			include("$doc_root$struct_loc/thread.phtml");
 		?>
 	</body>
 </html>

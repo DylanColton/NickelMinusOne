@@ -1,3 +1,80 @@
 body {
 	background	: #FFFFFF;
 }
+
+* {
+	/* Global Font */
+}
+
+#page-container {
+}
+
+/* Header */
+#header	{
+}
+
+#page-title {
+}
+
+#make-post, #make-thread {
+}
+
+#changelog {
+}
+
+.navi {
+}
+
+/* Footer */
+#footer {
+}
+
+#style-select {
+}
+
+#legal-and-about {
+}
+
+/* Catalog */
+.catalog-item {
+}
+
+.thread-stats {
+}
+
+.thread-title {
+}
+
+.preview-op {
+}
+
+/* Thread */
+.post-info {
+}
+
+.post-datetime {
+}
+
+.post-title {
+	color		: #771111;
+	font-weight	: bold;
+}
+
+.post-author {
+}
+
+.post-num {
+}
+
+.replies {
+}
+
+.file-info {
+}
+
+/* Message MarkDown Colouring */
+.message {
+}
+
+.quote {
+}

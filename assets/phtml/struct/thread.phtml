@@ -1,7 +1,29 @@
 <div id=<?php echo $thread_no; ?> class=thread>
-	<?php 
+	<?php
+		$conn = mysqli_connect(SERVER, USER, PSWD, DATABASE);
 		$sql = "SELECT * FROM Post
 			WHERE ThreadID = $thread_no";
-		$thread = mysqli_query($conn, $sql)[0];
+		$thread = mysqli_query($conn, $sql)->fetch_all();
+		
+		foreach ($thread as $post) {
+			$num		= $post[0];
+			$op			= $post[1];
+			$title		= $post[3];
+			$name		= $post[4];
+			$datetime	= $post[5];
+			$file_num	= $post[6];
+			$message	= $post[7];
+
+			if ($file_num) {
+				$file_data	= mysqli_query($conn, "SELECT * FROM Media WHERE MediaID = $file_num")->fetch_all();
+				$file_name	= $file_data[0][1];
+				$file_type	= $file_data[0][2];
+				$file_size	= $file_data[0][3];
+				$file_dim	= $file_data[0][4];
+			}
+
+			$replies	= mysqli_query($conn, "SELECT * FROM Reference WHERE Reference = $num")->fetch_all();
+			include("$doc_root$struct_loc/post.phtml");
+		}
 	?>
 </div>

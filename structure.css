@@ -86,7 +86,6 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 
 /* Footer */
 #footer {
-	position	: absolute;
 	width		: 100%;
 	max-width	: 100%;
 	height		: auto;
@@ -115,8 +114,8 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 
 /* Content */
 #content-wrap {
-	width		: 100%;
-	max-width	: 100%;
+	width		: fit-content;
+	max-width	: 100vw;
 	min-height	: 200px;
 	height		: auto;
 }

@@ -6,21 +6,25 @@
 	<?php
 		include("$doc_root$static_loc/header.phtml");
 
-		$uri_loc = $_SERVER['REQUEST_URI'];
-		if (str_contains($uri_loc, 'thread'))
-			include("$doc_root$struct_loc/thread.phtml");
-		else if (str_contains($uri_loc, 'catalog'))
-			include("$doc_root$struct_loc/catalog.phtml");
-		else if (str_contains($uri_loc, 'board'))
-			include("$doc_root$struct_loc/board.phtml");
-		else if (str_contains($uri_loc, 'janny-station'))
-			include("$doc_root$struct_loc/janny.phtml");
-		else if ($err == 404)
-			include("$doc_root$struct_log/404.phtml");
-		else if ($err == 500)
-			echo "<span class=error>The programmer is having a bad day</span>";
-		else
-			include("$doc_root$struct_loc/home.phtml");
+		echo "<div id=content-wrap>";
+			$uri_loc = $_SERVER['REQUEST_URI'];
+			if (str_contains($uri_loc, 'thread')) {
+				$thread_no	= explode('/', $uri_loc)[4];
+				include("$doc_root$struct_loc/thread.phtml");
+			} else if (str_contains($uri_loc, 'catalog')) {
+				include("$doc_root$struct_loc/catalog.phtml");
+			} else if (str_contains($uri_loc, 'board')) {
+				include("$doc_root$struct_loc/board.phtml");
+			} else if (str_contains($uri_loc, 'janny-station')) {
+				include("$doc_root$struct_loc/janny.phtml");
+			} else if ($err == 404) {
+				include("$doc_root$struct_log/404.phtml");
+			} else if ($err == 500) {
+				echo "<span class=error>The programmer is having a bad day</span>";
+			} else {
+				include("$doc_root$struct_loc/home.phtml");
+			}
+		echo "</div>";
 	
 		include("$doc_root$static_loc/footer.phtml");
 	?>

@@ -2,7 +2,8 @@
 DEFINE("SERVER", "localhost");
 DEFINE("USER", "www-data");
 DEFINE("PSWD", '$fourCentG4rb4ge');
-DEFINE("DATABASE", "nickelminusone");
+//DEFINE("DATABASE", "nickelminusone");
+DEFINE("DATABASE", "nmo");
 // Tables
 DEFINE("THREADS", "Thread");
 DEFINE("REPORTS", "Report");
@@ -97,7 +98,7 @@ try {
 		)";
 
 	if (!mysqli_query($conn, $sql))
-		die("Could not make table ".POSTS." ".msqli_error($conn));
+		die("Could not make table ".POSTS." - ".mysqli_error($conn));
 } catch (Exception $e) {
 	die("Could not make table ".POSTS." - $e");
 }
@@ -148,6 +149,7 @@ try {
 	if (in_array(JANNY, $Tables))
 		goto janny_exists;
 } catch (Exception $e) {
+	die("Could not create ".JANNY." - $e");
 }
 janny_exists:
 
