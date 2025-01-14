@@ -25,5 +25,7 @@
 			$replies	= mysqli_query($conn, "SELECT * FROM Reference WHERE Reference = $num")->fetch_all();
 			include("$doc_root$struct_loc/post.phtml");
 		}
+
+		mysqli_close($conn);
 	?>
 </div>

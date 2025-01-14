@@ -1,8 +1,6 @@
 CREATE DATABASE nmo;
 USE nmo;
 
-SHOW TABLES;
-
 CREATE TABLE Board (
 	BoardName	VARCHAR(4)		NOT NULL,
 	BoardDesc	VARCHAR(255)	NOT NULL,
@@ -73,31 +71,31 @@ VALUES ('test', "The /test/ Board");
 INSERT INTO Thread (ThreadNo, Board, LastUpdate, PruneOrDeleted)
 VALUES (1, 'test', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'), FALSE);
 INSERT INTO Media(MediaName, Type, Size, Dim)
-VALUES ('kms.jpg', 'jpg', 43167, '680x561');
+VALUES ('kurt.jpg', 'jpg', 71286, '1500x1500');
 INSERT INTO Post (Type, ThreadID, Title, Name, PostTime, Media, Message)
-VALUES (TRUE, 1, "A Thread", 'Saggy', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'), 1, "I hate myself and I want to die");
+VALUES (TRUE, 1, "A Thread", 'Saggy', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'), 1, "I love nirvana");
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 1;
 
 INSERT INTO Media(MediaName, Type, Size, Dim)
-VALUES ('gotoreddit.png', 'png', 62531, '285x208');
+VALUES ('Nevermind.png', 'png', 941314, '2000x1998');
 INSERT INTO Post (Type, ThreadID, Name, PostTime, Media, Message)
-VALUES (FALSE, 1, '', STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s'), 2, '>Talks about suicide.\n(go to reddit)[reddit.com]');
+VALUES (FALSE, 1, '', STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s'), 2, '(Smells Like Teen Spirit)[https://www.youtube.com/watch?v=hTWKbfoikeg]');
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 1;
 
 INSERT INTO Media(MediaName, Type, Size, Dim)
-VALUES ('you rn.mp4', 'mp4', 240865, '480x480');
+VALUES ('Nirvana.webm', 'webm', 755953, '480x360');
 INSERT INTO Post (Type, ThreadID, Name, PostTime, Media, Message)
-VALUES (FALSE, 1, '', STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s'), 3, 'This is you');
+VALUES (FALSE, 1, '', STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s'), 3, '>Good band\n>Bad Frontman\nAnnoying Politics though');
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 1;
 
 INSERT INTO Post (Type, ThreadID, Name, PostTime, Media, Message)
-VALUES (FALSE, 1, '', STR_TO_DATE('13/01/2025(Mon)13:16:02', '%d/%m/%Y(%a)%H:%i:%s'), NULL, "Don't kill yourself. At least see what's good, and try not to veer into the dark");
+VALUES (FALSE, 1, '', STR_TO_DATE('13/01/2025(Mon)13:16:02', '%d/%m/%Y(%a)%H:%i:%s'), NULL, ">>1\nPolly wants a Cracker");
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:16:02', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 1;

@@ -9,7 +9,7 @@
 		try {
 			$board_threads = mysqli_query($conn, $sql)[0];
 		} catch (Exception $e) [
-			die("Error - $e);
+			die("Error - $e");
 		}
 		$board_threads = [];
 
@@ -22,5 +22,7 @@
 				//
 			}
 		}
+
+		mysqli_close($conn);
 	?>
 </div>

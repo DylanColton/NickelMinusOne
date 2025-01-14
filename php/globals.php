@@ -26,12 +26,22 @@ $favicon_loc	= "/assets/favicons/";
 
 $doc_root		= $_SERVER['DOCUMENT_ROOT'];
 $uri			= explode("/", $_SERVER['REQUEST_URI']);
-$ignore			= ['.', '..', '.htaccess', 'test', 'testrig.php'];
+$ignore			= [
+	'.',
+	'..',
+	'.htaccess',
+	'test',
+	'testrig.php'
+];
 $images			= [
 	'jpg',
 	'jpeg',
 	'gif',
 	'png'
+];
+$audio			= [
+	'ogg',
+	'mp3'
 ];
 $videos			= [
 	'webm',

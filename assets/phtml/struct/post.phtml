@@ -1,11 +1,11 @@
 <?php
 $formattedSize = 0;
-if ($size >= 1000000) {
+if ($file_size >= 1000000) {
 	$formattedSize = number_format($file_size / 1000000.0, '2', '.', '')."MB";
-} elseif ($size >= 1000) {
-	if ($size >= 100000) {
+} elseif ($file_size >= 1000) {
+	if ($file_size >= 100000) {
 		$formattedSize = number_format($file_size / 1000.0, '0', '.', '');
-	} elseif ($size >= 10000) {
+	} elseif ($file_size >= 10000) {
 		$formattedSize = number_format($file_size / 1000.0, '1', '.', '');
 	} else {
 		$formattedSize = number_format($file_size / 1000.0, '2', '.', '');
@@ -16,6 +16,9 @@ if ($size >= 1000000) {
 }
 
 // Message MarkDown
+
+// Response
+$message = preg_replace('/>>([\d]+)/', '<a href=#$1>>>$1</a>', $message);
 
 // Quote
 $message = preg_replace('/^(>.*)($)/m', '<span class="quote">${1}</span>${2}', $message);
@@ -33,46 +36,46 @@ $message = preg_replace("/\n/", "<br/>", $message);
 ?>
 
 <div "<?php echo "id=$num"; ?>" class="post-container <?php echo ($op ? "op" : ""); ?>">
-	<div class=post-top>
-		<div class=post-info>
+	<div class="post-top">
+		<div class="post-info">
 			<?php
 				if ($op)
-					echo "<span class=post-title>$title</span>";
+					echo "<span class=\"post-title\">$title</span>";
 			?>
 
-			<span class=post-name><?php echo (($name == "") ? "Anonymous" : $name); ?></span>
+			<span class="post-name"><?php echo (($name == "") ? "Anonymous" : $name); ?></span>
 
-			<span class=post-datetime><?php echo $datetime; ?></span>
+			<span class="post-datetime"><?php echo $datetime; ?></span>
 
-			<span class=post-num>No.<?php echo $num; ?></span>
+			<span class="post-num">No.<?php echo $num; ?></span>
 
-			<span class=menu-drop-down>▶</span>
+			<span class="menu-drop-down">▶</span>
 		</div>
 
 		<?php
 			if (count($replies) > 0) {
-				echo "<div class=replies>";
-				foreach ($replies as $reply) { echo "<a href=#{$reply[0]}>>>{$reply[0]}</a>"; }
+				echo "<div class=\"replies\">";
+				foreach ($replies as $reply) { echo "<a class=\"reply\" href=#{$reply[0]}>>>{$reply[0]}</a>"; }
 				echo "</div>";
 			}
 		?>
 	</div>
 
-	<div class=post-content>
+	<div class="post-content">
 		<?php
 			if ($file_num != NULL) {
-				echo "<div class=file-info>
-					<a class=filename href=\"media/$file_num$file_type\">$file_name</a>
-					<span class=file-dim-size>($file_dim) $formattedSize</span>
+				echo "<div class=\"file-info\">
+					<a class=\"filename\" href=\"media/$file_num$file_type\">$file_name</a>
+					<span class=\"file-dim-size\">($file_dim) $formattedSize</span>
 				</div>
 
-				<div class=file>
+				<div class=\"file\">
 					<".(in_array($file_type, $videos) ? "video" : "img")." src=\"media/$file_num.$file_type\" />
 				</div>";
 			}
 		?>
 
-		<div class=message>
+		<div class="message">
 			<?php echo $message; ?>
 		</div>
 	</div>

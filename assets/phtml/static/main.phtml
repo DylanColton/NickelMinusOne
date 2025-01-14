@@ -1,5 +1,16 @@
 <head>
-	<?php include("$doc_root$static_loc/head.phtml"); ?>
+	<?php 
+		// Title Generation
+		$uri_loc = $_SERVER['REQUEST_URI'];
+		if (str_contains($uri_loc, 'thread')) {
+			$thread_no = explode('/', $uri_loc)[4];
+			$conn = mysqli_connect(SERVER, USER, PSWD, DATABASE);
+			$thr_tit = mysqli_query($conn, "SELECT Title FROM Post WHERE PostID = $thread_no")->fetch_all()[0][0];
+			mysqli_close($conn);
+			$title = "$title - $thr_tit";
+		}
+		include("$doc_root$static_loc/head.phtml");
+	?>
 </head>
 
 <body>

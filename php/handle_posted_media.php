@@ -20,7 +20,7 @@
 				break;
 			}
 		}
-		list($oldW, $oldH, $imageType) = getimagesize("./$file");
+		list($oldW, $oldH, $imageType) = getimagesize($file);
 
 		$scaleFactor = $targetLen / max($oldW, $oldH);
 		$newW = round($oldW * $scaleFactor);
@@ -35,8 +35,12 @@
 				$sourceImage = imagecreatefrompng($file);
 				break;
 
-			case IMAGE_TYPE_GIF:
+			case IMAGETYPE_GIF:
 				$sourceImage = imagecreatefromgif($file);
+				break;
+
+			case IMAGETYPE_WEBP:
+				$sourceImage = imagecreatefromwebp($file);
 				break;
 		}
 
@@ -49,7 +53,6 @@
 
 		imagecopyresampled($resizedImage, $sourceImage, 0, 0, 0, 0, $newW, $newH, $oldW, $oldH);
 
-		//$outputFile = preg_replace('\.^\/', '_thumb.', $file);
 		$outputFile = preg_replace('/(\d+)\.(\w+)$/', '${1}_thumb.${2}', $file);
 		switch ($imageType) {
 			case IMAGETYPE_JPEG:
@@ -63,14 +66,25 @@
 			case IMAGETYPE_GIF:
 				imagegif($resizedImage, $outputFile);
 				break;
+
+			case IMAGETYPE_WEBP:
+				imagewebp($resizedImage, $outputFile);
 		}
 
 		imagedestroy($sourceImage);
 		imagedestroy($resizedImage);
 
 		if ($is_video)
-			exec("rm $file");
+			exec("rm ".escapeshellarg($file));
 
 		return $outputFile;
+	}
+
+	function collectMetaData($file) {
+		// Image metadata
+
+		// Audo metadata
+
+		// Video metadata
 	}
 ?>

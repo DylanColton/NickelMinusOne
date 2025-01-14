@@ -27,8 +27,7 @@ try {
 	for ($i = 0; $i < count($dbs); $i++)
 		$dbs[$i] = $dbs[$i][0];
 
-	if (!mysqli_query($conn, "CREATE DATABASE ".DATABASE))
-		die ("Error creating Database ".DATABASE);
+	throw new Exception("Client nor Server has any such permission");
 } catch (Exception $e) {
 	if (!in_array(DATABASE, $dbs))
 		echo "Database ".DATABASE." doesn't exist. Exception occurred - $e";
@@ -79,6 +78,27 @@ try {
 media_exists:
 
 try {
+	if (in_array(THREADS, $Tables))
+		goto threads_exists;
+
+	$sql = "
+		CREATE TABLE ".THREADS." (
+			ThreadNo		INT			UNSIGNED	NOT NULL,
+			Board			VARCHAR(4)				NOT NULL,
+			LastUpdate		TIMESTAMP				NOT NULL,
+			PruneOrDeleted	BOOLEAN					NOT NULL,
+			PRIMARY KEY(ThreadNo),
+			FOREIGN KEY(Board)		REFERENCES ".BOARDS."(BoardName)
+		)";
+	if (!mysqli_query($conn, $sql)) {
+		die("Could not make table ".THREADS." ".mysqli_error($conn));
+	}
+} catch (Exception $e) {
+	die("Could not create ".THREADS." - $e");
+}
+threads_exists:
+
+try {
 	if (in_array(POSTS, $Tables))
 		goto posts_exists;
 
@@ -90,11 +110,11 @@ try {
 			Title		VARCHAR(100),
 			Name		VARCHAR(20),
 			PostTime	TIMESTAMP					NOT NULL,
-			Media		INT,
+			Media		INT				UNSIGNED,
 			Message		TEXT(60000)					NOT NULL,
-			PRIMARY KEY (PostID,
+			PRIMARY KEY (PostID),
 			FOREIGN KEY (Media) REFERENCES ".MEDIA."(MediaID),
-			FOREIGN KEY (ThreadID) REFERENCEE ".THREADS."(ThreadNo)
+			FOREIGN KEY (ThreadID) REFERENCES ".THREADS."(ThreadNo)
 		)";
 
 	if (!mysqli_query($conn, $sql))
@@ -113,7 +133,7 @@ try {
 			Referer		INT	UNSIGNED	NOT NULL,
 			Reference	INT	UNSIGNED	NOT NULL,
 			FOREIGN KEY (Referer) REFERENCES ".POSTS."(PostID),
-			FOREIGN KEY (Reference) REFERENCES ".POSTS."(PostID),
+			FOREIGN KEY (Reference) REFERENCES ".POSTS."(PostID)
 		)";
 
 	if (!mysqli_query($conn, $sql))
@@ -122,28 +142,6 @@ try {
 	die("Could not make table ".REFER." - $e");
 }
 refer_exists:
-
-try {
-	if (in_array(THREADS, $Tables))
-		goto threads_exists;
-
-	$sql = "
-		CREATE TABLE ".THREADS." (
-			ThreadNo		INT			UNSIGNED	NOT NULL,
-			Board			VARCHAR(4)				NOT NULL,
-			LastUpdate		TIMESTAMP				NOT NULL,
-			PruneOrDeleted	BOOLEAN					NOT NULL,
-			PRIMARY KEY(ThreadNo),
-			FOREIGN KEY(ThreadNo)	REFERENCES ".POSTS."(PostID)
-			FOREIGN KEY(Board)		REFERENCES ".BOARDS."(BoardName)
-		)";
-	if (!mysqli_query($conn, $sql)) {
-		die("Could not make table ".THREADS." ".mysqli_error($conn));
-	}
-} catch (Exception $e) {
-	die("Could not create ".THREADS." - $e");
-}
-threads_exists:
 
 try {
 	if (in_array(JANNY, $Tables))
