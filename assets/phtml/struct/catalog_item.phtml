@@ -1,5 +1,9 @@
 <div id=<?php echo $thread_id; ?> class=catalog-item>
-	<div class=preview-thumb></div>
+	<div class=preview-thumb>
+		<a href="<?php echo "/board/$board/thread/$thread_id"; ?>">
+			<img src=<?php echo "/board/$board/thread/$thread_id/media/$media"; ?> />
+		</a>
+	</div>
 
 	<div class=thread-stats>
 		<span class=tooltip>
@@ -8,13 +12,13 @@
 		</span>
 		/
 		<span class=tooltip>
-			M: <b><?php echo $num_replies; ?></b>
+			M: <b><?php echo $num_media; ?></b>
 			<span class=tooltiptext>Media</span>
 		</span>
 	</div>
 
 	<div class=thread-title>
-		<?php echo $title; ?>
+		<?php echo $thr_title; ?>
 	</div>
 
 	<div class=preview-op>

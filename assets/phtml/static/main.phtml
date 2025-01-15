@@ -7,7 +7,11 @@
 			$conn = mysqli_connect(SERVER, USER, PSWD, DATABASE);
 			$thr_tit = mysqli_query($conn, "SELECT Title FROM Post WHERE PostID = $thread_no")->fetch_all()[0][0];
 			mysqli_close($conn);
-			$title = "$title - $thr_tit";
+			$title = "$thr_tit";
+		} elseif (str_contains($uri_loc, 'catalog')) {
+			$title = "$title - Catalog";
+		} else if (str_contains($uri_loc, 'janny-station')) {
+			$title = "/Janny Station/";
 		}
 		include("$doc_root$static_loc/head.phtml");
 	?>

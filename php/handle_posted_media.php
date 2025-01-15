@@ -83,7 +83,7 @@
 	function collectMetaData($file) {
 		// Image metadata
 
-		// Audo metadata
+		// Audio metadata
 
 		// Video metadata
 	}

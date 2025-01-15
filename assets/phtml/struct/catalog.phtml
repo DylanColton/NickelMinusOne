@@ -1,2 +1,24 @@
-<div class=catalog>
+<div id=catalog>
+	<?php
+		// Collect all the active threads
+		$board = explode("/", $_SERVER['REQUEST_URI'])[2];
+		$conn = mysqli_connect(SERVER, USER, PSWD, DATABASE);
+		$threads = mysqli_query($conn, "SELECT ThreadNo FROM Thread WHERE Board='$board' ORDER BY LastUpdate DESC")->fetch_all();
+
+		foreach($threads as $thread) {
+			$post			= mysqli_query($conn, "SELECT Title, Media, Message FROM Post WHERE PostID={$thread[0]}")->fetch_all()[0];
+			$num_replies	= count(mysqli_query($conn, "SELECT PostID FROM Post WHERE ThreadID={$thread[0]}")->fetch_all()) - 1;
+			$num_media		= count(mysqli_query($conn, "SELECT PostID FROM Post WHERE ThreadID={$thread[0]} AND NOT Media=0")->fetch_all()[0]);
+			$media_quer		= mysqli_query($conn, "SELECT MediaID, Type FROM Media WHERE MediaID={$post[1]}")->fetch_all()[0];
+
+			$thread_id		= $thread[0];
+			$media			= "{$media_quer[0]}_thumb.{$media_quer[1]}";
+			$thr_title		= $post[0];
+			$op_message		= $post[2];
+
+			include("$doc_root$struct_loc/catalog_item.phtml");
+		}
+
+		mysqli_close($conn);
+	?>
 </div>

@@ -134,7 +134,7 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 	flex-wrap		: wrap;
 	align-items		: center;
 	justify-content	: center;
-	width			: auto;
+	width			: 100vw;
 	height			: auto;
 }
 
@@ -147,9 +147,9 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 
 .preview-thumb {
 	width		: fit-content;
-	max-width	: 125px;
+	max-width	: 150px;
 	height		: fit-content;
-	max-height	: 125px;
+	max-height	: 150px;
 	margin		: 0 auto;
 	margin-top	: 10px;
 }

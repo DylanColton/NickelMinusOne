@@ -33,5 +33,21 @@
 	</head>
 
 	<body>
+		<?php
+			$thread_id		= 1;
+			$num_replies	= 1;
+			$num_media		= 1;
+			$thr_title		= "The Title";
+			$op_message		= "This is a message I am posting";
+		?>
+		<div id=catalog>
+			<?php include("$doc_root$struct_loc/catalog_item.phtml"); ?>
+			<?php include("$doc_root$struct_loc/catalog_item.phtml"); ?>
+			<?php include("$doc_root$struct_loc/catalog_item.phtml"); ?>
+			<?php include("$doc_root$struct_loc/catalog_item.phtml"); ?>
+			<?php include("$doc_root$struct_loc/catalog_item.phtml"); ?>
+			<?php include("$doc_root$struct_loc/catalog_item.phtml"); ?>
+			<?php include("$doc_root$struct_loc/catalog_item.phtml"); ?>
+		</div>
 	</body>
 </html>
