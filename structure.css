@@ -284,6 +284,34 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 	height	: fit-content;
 }
 
-.quote {
-	color	: #00CC44;
+/* Form */
+form {
+	min-width		: 200px;
+	width			: fit-content;
+	max-width		: 100%;
+	height			: fit-content;
+	border			: 1px solid;
+	display			: flex;
+	flex-direction	: column;
+	padding			: 3px;
+}
+
+.form-title, input, button, textarea {
+	width		: 100%;
+	max-width	: 100%;
+	min-height	: 1.1em;
+	height		: fit-content;
+	border		: 1px solid;
+	box-sizing	: border-box;
+}
+
+.form-title {
+	text-align		: center;
+	vertical-align	: center;
+}
+
+textarea {
+	resize		: vertical;
+	min-height	: 6em;
+	max-height	: 40vh;
 }

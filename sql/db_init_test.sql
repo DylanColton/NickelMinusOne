@@ -36,7 +36,7 @@ CREATE TABLE Post (
 	Message     TEXT(60000)                 	NULL,
 	PRIMARY KEY (PostID),
 	FOREIGN KEY (Media) REFERENCES Media(MediaID),
-	FOREIGN KEY (ThreadID) REFERENCES Thread(ThreadNo)
+    FOREIGN KEY (ThreadID) REFERENCES Thread(ThreadNo)
 );
 
 CREATE TABLE Reference (
@@ -109,7 +109,7 @@ VALUES (5, 'test', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'
 INSERT INTO Media(MediaName, Type, Size, Dim)
 VALUES ('kurt.jpg', 'jpg', 71286, '1500x1500');
 INSERT INTO Post (Type, ThreadID, Title, Name, PostTime, Media, Message)
-VALUES (TRUE, 5, "A Thread", 'Saggy', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'), 1, "I love nirvana");
+VALUES (TRUE, 5, "A Thread", 'Saggy', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'), 4, "I love nirvana");
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 5;
@@ -117,7 +117,7 @@ WHERE ThreadNo = 5;
 INSERT INTO Media(MediaName, Type, Size, Dim)
 VALUES ('Nevermind.png', 'png', 941314, '2000x1998');
 INSERT INTO Post (Type, ThreadID, Name, PostTime, Media, Message)
-VALUES (FALSE, 5, '', STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s'), 2, '(Smells Like Teen Spirit)[https://www.youtube.com/watch?v=hTWKbfoikeg]');
+VALUES (FALSE, 5, '', STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s'), 5, '(Smells Like Teen Spirit)[https://www.youtube.com/watch?v=hTWKbfoikeg]');
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 5;
@@ -125,7 +125,7 @@ WHERE ThreadNo = 5;
 INSERT INTO Media(MediaName, Type, Size, Dim)
 VALUES ('Nirvana.webm', 'webm', 755953, '480x360');
 INSERT INTO Post (Type, ThreadID, Name, PostTime, Media, Message)
-VALUES (FALSE, 5, '', STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s'), 3, '>Good band\n>Bad Frontman\nAnnoying Politics though');
+VALUES (FALSE, 5, '', STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s'), 6, '>Good band\n>Bad Frontman\nAnnoying Politics though');
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 5;
@@ -145,7 +145,7 @@ VALUES (9, 'test', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'
 INSERT INTO Media(MediaName, Type, Size, Dim)
 VALUES ('kurt.jpg', 'jpg', 71286, '1500x1500');
 INSERT INTO Post (Type, ThreadID, Title, Name, PostTime, Media, Message)
-VALUES (TRUE, 9, "A Thread", 'Saggy', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'), 1, "I love nirvana");
+VALUES (TRUE, 9, "A Thread", 'Saggy', STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s'), 7, "I love nirvana");
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:00:00', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 9;
@@ -153,7 +153,7 @@ WHERE ThreadNo = 9;
 INSERT INTO Media(MediaName, Type, Size, Dim)
 VALUES ('Nevermind.png', 'png', 941314, '2000x1998');
 INSERT INTO Post (Type, ThreadID, Name, PostTime, Media, Message)
-VALUES (FALSE, 9, '', STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s'), 2, '(Smells Like Teen Spirit)[https://www.youtube.com/watch?v=hTWKbfoikeg]');
+VALUES (FALSE, 9, '', STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s'), 8, '(Smells Like Teen Spirit)[https://www.youtube.com/watch?v=hTWKbfoikeg]');
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:15:07', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 9;
@@ -161,7 +161,7 @@ WHERE ThreadNo = 9;
 INSERT INTO Media(MediaName, Type, Size, Dim)
 VALUES ('Nirvana.webm', 'webm', 755953, '480x360');
 INSERT INTO Post (Type, ThreadID, Name, PostTime, Media, Message)
-VALUES (FALSE, 9, '', STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s'), 3, '>Good band\n>Bad Frontman\nAnnoying Politics though');
+VALUES (FALSE, 9, '', STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s'), 9, '>Good band\n>Bad Frontman\nAnnoying Politics though');
 UPDATE Thread
 SET LastUpdate = STR_TO_DATE('13/01/2025(Mon)13:15:43', '%d/%m/%Y(%a)%H:%i:%s')
 WHERE ThreadNo = 9;

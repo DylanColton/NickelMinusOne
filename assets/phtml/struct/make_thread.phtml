@@ -1,0 +1,18 @@
+<form action="/php/handle_post.php" method="post" enctype="multipart/form-data">
+	<p class=form-title>
+		<?php echo ($uri[3] == "thread" ? "Reply to Thread" : "Make New Thread"); ?>
+		<span class=close-form></span>
+	</p>
+	<input type="text" name="make" value="<?php echo ($uri[2] ? "THREAD" : "POST") ?>" required hidden>
+	<input type="text" name="board" value="<?php echo $board; ?>" required hidden>
+
+	<?php echo ($uri[3] == "thread" ? "" : "<input id=\"title\" type=\"text\" name=\"title\" placeholder=\"Title\">"); ?>
+
+	<input id="name" type="text" name="name" placeholder="Name">
+
+	<textarea id="message" type="text" name="message" placeholder="Message"></textarea>
+
+	<input id="file" type="file" name="uploaded_file" <?php echo ($uri[3] == "thread" ? "" : "required"); ?>>
+
+	<button type="submit">POST</button>
+<form>

@@ -1,6 +1,7 @@
 <?php
-	function extractFrame($video) {
-		$tempFramePath = "./".preg_replace("/\.[^.]+$/", ".jpg", $video);
+	function extractFrame($video, $save_to) {
+		//$tempFramePath = "./".preg_replace("/\.[^.]+$/", ".jpg", $video);
+		$tempFramePath = "./$save_to".preg_replace("/\.[^.]+$/", "jpg", $video);
 
 		$command = "ffmpeg -i ".escapeshellarg($video)." -ss 00:00:01.000 -vframes 1 ".escapeshellarg($tempFramePath)." -y";
 		exec($command, $output, $returnCode);
@@ -80,11 +81,32 @@
 		return $outputFile;
 	}
 
-	function collectMetaData($file) {
-		// Image metadata
+	function collectMetaData($file, $images, $audio, $videos) {
+		$mimeToExt = [
+			'image/jpeg'	=> 'jpg',
+			'image/png'		=> 'png',
+			'image/gif'		=> 'gif',
+			'image/webp'	=> 'webp',
+			'audio/mpeg'	=> 'mp3',
+			'audio/ogg'		=> 'ogg',
+			'video/mp4'		=> 'mp4',
+			'video/webm'	=> 'webm'
+		];
 
-		// Audio metadata
-
-		// Video metadata
+		$name = $file['name'];
+		$type = $mimeToExt[$file['type']];
+		$size = $file['size'];
+		if (in_array($type, $images)) {
+			$t_dim = getimagesize($file['tmp_name']);
+			$dim = "{$t_dim[0]}x{$t_dim[1]}";
+		} elseif (in_array($type, $audio)) {
+			$v_frame = extractFrame($file['tmp_name'], "temp/place/");
+			$t_dim = getimagesize($v_frame);
+			exec("rm ".escapeshellarg($v_frame));
+			$dim = "{$t_dim[0]}x{$t_dim[1]}";
+		} else if (in_array($type, $videos)) {
+			$dim = "0x0";
+		}
+		return [$name, $type, $size, $dim];
 	}
 ?>
