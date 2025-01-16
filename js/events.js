@@ -1,3 +1,3 @@
-setTimeout(() => {
+$(document).ready(() => {
 	init();
-}, 100);
+});

@@ -1,26 +1,40 @@
-<div class=thread>
+<div class=board>
 	<?php
 		// Here we will get the page number
 		$page_num = (isset($_GET['page']) ? $_GET['page'] : 1);
-		$sql = "SELECT * FROM Thread
-			WHERE PruneOrDeleted = FALSE
-			ORDER BY DESC;"
-		$conn = mysqli(SERVER, USER, PSWD, DATABASE);
+		$sql = "SELECT ThreadNo FROM Thread
+			WHERE PruneOrDeleted=FALSE
+			ORDER BY LastUpdate DESC";
+		$conn = mysqli_connect(SERVER, USER, PSWD, DATABASE);
 		try {
-			$board_threads = mysqli_query($conn, $sql)[0];
-		} catch (Exception $e) [
+			$board_threads = mysqli_query($conn, $sql)->fetch_all();
+		} catch (Exception $e) {
 			die("Error - $e");
 		}
-		$board_threads = [];
 
+		while (count($board_threads) < 10 * ($page_num - 1))
+			$page_num--;
 
-		if ($page_num = 0) {
+		if ($page_num == 0) {
 			// Print all live threads
-		} else {
-			// Print a selection of 10 threads based on page num
-			for($i = 10 * ($page_num - 1); $i < 10 * $page_num; $i++) {
-				//
+			echo "All";
+			$thread_no	= 1;
+			/*
+			for ($i = 0; $i < count($board_threads); $i++) {
+				$thread_no	= $board_threads[$i][0];
+				include("$doc_root$struct_loc/thread.phtml");
 			}
+			*/
+		} else {
+			$thread_no	= 1;
+			include("$doc_root/$struct_loc/thread.phtml");
+			/*
+			for($i = 10 * ($page_num - 1); $i < min(10 * $page_num, count($board_threads)); $i++) {
+				echo "<hr/>$i<hr/>";
+				$thread_no	= $board_threads[$i][0];
+				include("$doc_root$struct_loc/thread.phtml");
+			}
+			*/
 		}
 
 		mysqli_close($conn);

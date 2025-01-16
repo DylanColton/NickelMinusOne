@@ -11,9 +11,9 @@
 
 	<?php
 		if (str_contains($_SERVER['REQUEST_URI'], 'thread'))
-			echo "<div id=make-post onclick=openForm()>[ <a id=add-post href=''>Make a Post</a> ]</div>";
+			echo "<div id=make-post onclick=openForm()>[ <a id=add-post href='#'>Make a Post</a> ]</div>";
 		else if (str_contains($_SERVER['REQUEST_URI'], 'board'))
-			echo "<div id=make-thread onclick=openForm()>[ <a id=add-thread href=''>Make a Thread</a> ]</div>";
+			echo "<div id=make-thread onclick=openForm()>[ <a id=add-thread href='#'>Make a Thread</a> ]</div>";
 	?>
 
 	<div id=changelog>

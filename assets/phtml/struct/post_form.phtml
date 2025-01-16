@@ -3,8 +3,8 @@
 		<?php echo ($uri[3] == "thread" ? "Reply to Thread" : "Make New Thread"); ?>
 		<span class=close-form onclick=closeForm()>x</span>
 	</p>
-	<input type="text" name="make" value="<?php echo ($uri[2] ? "THREAD" : "POST") ?>" required hidden>
-	<input type="text" name="board" value="<?php echo $board; ?>" required hidden>
+	<input type="text" name="make" value="<?php echo ($uri[3] == "thread" ? "POST" :"THREAD") ?>" required hidden>
+	<input type="text" name="board" value="<?php echo $uri[2]; ?>" required hidden>
 	<?php
 		if ($uri[3] == "thread")
 			echo "<input type='text' name='thread_no' value='{$uri[4]}' required hidden>";

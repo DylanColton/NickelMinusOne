@@ -5,14 +5,42 @@
 			WHERE ThreadID = $thread_no";
 		$thread = mysqli_query($conn, $sql)->fetch_all();
 		
-		foreach ($thread as $post) {
-			$num		= $post[0];
-			$op			= $post[1];
-			$title		= $post[3];
-			$name		= $post[4];
-			$datetime	= $post[5];
-			$file_num	= $post[6];
-			$message	= $post[7];
+		if ($uri[3] == "thread") {
+			foreach ($thread as $post) {
+				$num		= $post[0];
+				$op			= $post[1];
+				$thread_no	= $post[2];
+				$title		= $post[3];
+				$name		= $post[4];
+				$datetime	= $post[5];
+				$file_num	= $post[6];
+				$message	= $post[7];
+
+				if ($file_num) {
+					$file_data	= mysqli_query($conn, "SELECT * FROM Media WHERE MediaID = $file_num")->fetch_all();
+					$file_name	= $file_data[0][1];
+					$file_type	= $file_data[0][2];
+					$file_size	= $file_data[0][3];
+					$file_dim	= $file_data[0][4];
+				}
+
+				$replies	= mysqli_query($conn, "SELECT * FROM Reference WHERE Reference = $num")->fetch_all();
+				include("$doc_root$struct_loc/post.phtml");
+			}
+
+			include("$doc_root$struct_loc/post_form.phtml");
+
+			mysqli_close($conn);
+		} else {
+			$ori_post	= $thread[0];
+			$num		= $ori_post[0];
+			$op			= $ori_post[1];
+			$thread_no	= $ori_post[2];
+			$title		= $ori_post[3];
+			$name		= $ori_post[4];
+			$datetime	= $ori_post[5];
+			$file_num	= $ori_post[6];
+			$message	= $ori_post[7];
 
 			if ($file_num) {
 				$file_data	= mysqli_query($conn, "SELECT * FROM Media WHERE MediaID = $file_num")->fetch_all();
@@ -21,13 +49,32 @@
 				$file_size	= $file_data[0][3];
 				$file_dim	= $file_data[0][4];
 			}
-
-			$replies	= mysqli_query($conn, "SELECT * FROM Reference WHERE Reference = $num")->fetch_all();
+			$replies	= mysqli_query($conn, "SELECT * FROM Reference WHERE Reference=$num")->fetch_all();
 			include("$doc_root$struct_loc/post.phtml");
+
+			for($i = max(1, count($thread)-4); $i < count($thread); $i++) {
+				$num		= $thread[$i][0];
+				$op			= $thread[$i][1];
+				$thread_no	= $thread[$i][2];
+				$title		= $thread[$i][3];
+				$name		= $thread[$i][4];
+				$datetime	= $thread[$i][5];
+				$file_num	= $thread[$i][6];
+				$message	= $thread[$i][7];
+
+				if ($file_num) {
+					$file_data	= mysqli_query($conn, "SELECT * FROM Media WHERE MediaID = $file_num")->fetch_all();
+					$file_name	= $file_data[0][1];
+					$file_type	= $file_data[0][2];
+					$file_size	= $file_data[0][3];
+					$file_dim	= $file_data[0][4];
+				}
+				$replies	= mysqli_query($conn, "SELECT * FROM Reference WHERE Reference=$num")->fetch_all();
+				include("$doc_root$struct_loc/post.phtml");
+			}
+
+			echo "<hr/>";
+			echo "<hr/>";
 		}
-
-		mysqli_close($conn);
 	?>
-
-	<?php include("$doc_root$struct_loc/post_form.phtml"); ?>
 </div>
