@@ -12,7 +12,12 @@
 		return $tempFramePath;
 	}
 
-	function resizeImage($file, $videoes, $targetLen = 150) {
+	function resizeImage($file, $videoes, $audio, $targetLen = 150) {
+		foreach ($audio as $needle) {
+			if (str_contains($file, $needle)) {
+				return;
+			}
+		}
 		$is_video = false;
 		foreach ($videoes as $needle) {
 			if (str_contains($file, $needle)) {

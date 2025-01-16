@@ -1,10 +1,11 @@
-<form class="form draggable" action="/php/handle_post.php" method="post" enctype="multipart/form-data">
+<form class="form draggable" action="/php/handle_form_post.php" method="post" enctype="multipart/form-data">
 	<p class=form-title>
 		<?php echo ($uri[3] == "thread" ? "Reply to Thread" : "Make New Thread"); ?>
 		<span class=close-form onclick=closeForm()>x</span>
 	</p>
 	<input type="text" name="make" value="<?php echo ($uri[3] == "thread" ? "POST" :"THREAD") ?>" required hidden>
 	<input type="text" name="board" value="<?php echo $uri[2]; ?>" required hidden>
+	<input type="text" name="return" value="<?php echo implode("/", $uri); ?>" required hidden>
 	<?php
 		if ($uri[3] == "thread")
 			echo "<input type='text' name='thread_no' value='{$uri[4]}' required hidden>";

@@ -85,7 +85,7 @@ try {
 		CREATE TABLE ".THREADS." (
 			ThreadNo		INT			UNSIGNED	NOT NULL,
 			Board			VARCHAR(4)				NOT NULL,
-			LastUpdate		TIMESTAMP				NOT NULL,
+			LastUpdate		VARCHAR(23)				NOT NULL,
 			PruneOrDeleted	BOOLEAN					NOT NULL,
 			PRIMARY KEY(ThreadNo),
 			FOREIGN KEY(Board)		REFERENCES ".BOARDS."(BoardName)
@@ -109,7 +109,7 @@ try {
 			ThreadID	INT				UNSIGNED	NOT NULL,
 			Title		VARCHAR(100),
 			Name		VARCHAR(20),
-			PostTime	TIMESTAMP					NOT NULL,
+			PostTime	VARCHAR(23)					NOT NULL,
 			Media		INT				UNSIGNED,
 			Message		TEXT(60000)					NOT NULL,
 			PRIMARY KEY (PostID),
