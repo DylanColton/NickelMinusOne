@@ -296,6 +296,17 @@ form {
 	padding			: 3px;
 }
 
+.draggable {
+	position	: absolute;
+	top			: 0%;
+	right		: 0%;
+	z-index		: 100;
+}
+
+.form-title {
+	cursor	: move;
+}
+
 .form-title, input, button, textarea {
 	width		: 100%;
 	max-width	: 100%;
@@ -308,6 +319,16 @@ form {
 .form-title {
 	text-align		: center;
 	vertical-align	: center;
+}
+
+.close-form {
+	width			: 1.1em;
+	height			: 1.1em;
+	float			: right;
+	border			: 1px solid #000000;
+	border-radius	: 20%;
+	cursor			: pointer;
+	justify-content	: center;
 }
 
 textarea {

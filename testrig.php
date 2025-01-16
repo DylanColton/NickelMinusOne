@@ -11,12 +11,12 @@
 
 		<style>
 			html {
-				width		: 100vw;
-				height		: 100vh;
-				background	: #000000;
-				display: flex;
-				justify-content: center;
-				align-items: center;
+				width				: 100vw;
+				height				: 100vh;
+				background			: #000000;
+				display				: flex;
+				justify-content		: center;
+				align-items			: center;
 			}
 
 			body {
@@ -32,6 +32,7 @@
 	</head>
 
 	<body>
-		<?php include("$doc_root$struct_loc/make_thread.phtml"); ?>
+		<div id='make-post' onclick=openForm()>[ <a href="#">Make a Post</a> ]</div>
+		<?php include("$doc_root$struct_loc/post_form.phtml"); ?>
 	</body>
 </html>
