@@ -52,15 +52,15 @@
 			$replies	= mysqli_query($conn, "SELECT * FROM Reference WHERE Reference=$num")->fetch_all();
 			include("$doc_root$struct_loc/post.phtml");
 
-			for($i = max(1, count($thread)-4); $i < count($thread); $i++) {
-				$num		= $thread[$i][0];
-				$op			= $thread[$i][1];
-				$thread_no	= $thread[$i][2];
-				$title		= $thread[$i][3];
-				$name		= $thread[$i][4];
-				$datetime	= $thread[$i][5];
-				$file_num	= $thread[$i][6];
-				$message	= $thread[$i][7];
+			for($j = max(1, count($thread)-4); $j < count($thread); $j++) {
+				$num		= $thread[$j][0];
+				$op			= $thread[$j][1];
+				$thread_no	= $thread[$j][2];
+				$title		= $thread[$j][3];
+				$name		= $thread[$j][4];
+				$datetime	= $thread[$j][5];
+				$file_num	= $thread[$j][6];
+				$message	= $thread[$j][7];
 
 				if ($file_num) {
 					$file_data	= mysqli_query($conn, "SELECT * FROM Media WHERE MediaID = $file_num")->fetch_all();
@@ -73,8 +73,7 @@
 				include("$doc_root$struct_loc/post.phtml");
 			}
 
-			echo "<hr/>";
-			echo "<hr/>";
+			echo "<hr/> <span class=open-thread>[ <a href=thread/$thread_no>Open Thread</a> ] </span> <hr/>";
 		}
 	?>
 </div>

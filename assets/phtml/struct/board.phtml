@@ -17,24 +17,15 @@
 
 		if ($page_num == 0) {
 			// Print all live threads
-			echo "All";
-			$thread_no	= 1;
-			/*
-			for ($i = 0; $i < count($board_threads); $i++) {
-				$thread_no	= $board_threads[$i][0];
+			foreach ($board_threads as $thread) {
+				$thread_no	= $thread[0];
 				include("$doc_root$struct_loc/thread.phtml");
 			}
-			*/
 		} else {
-			$thread_no	= 1;
-			include("$doc_root/$struct_loc/thread.phtml");
-			/*
 			for($i = 10 * ($page_num - 1); $i < min(10 * $page_num, count($board_threads)); $i++) {
-				echo "<hr/>$i<hr/>";
 				$thread_no	= $board_threads[$i][0];
 				include("$doc_root$struct_loc/thread.phtml");
 			}
-			*/
 		}
 
 		mysqli_close($conn);

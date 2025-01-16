@@ -70,7 +70,7 @@ $message = preg_replace("/\n/", "<br/>", $message);
 				</div>
 
 				<div class=\"file\">
-					<".(in_array($file_type, $videos) ? "video" : "img")." src=\"/board/{$uri[2]}/thread/$thread_no/media/$file_num.$file_type\" />
+						<img src=\"/board/{$uri[2]}/thread/$thread_no/media/".$file_num."_thumb.".(in_array($file_type, $images) ? $file_type : "jpg")."\" />
 				</div>";
 			}
 		?>
@@ -80,3 +80,9 @@ $message = preg_replace("/\n/", "<br/>", $message);
 		</div>
 	</div>
 </div>
+
+<?php
+	/*
+						<".(in_array($file_type, $videos) ? "video" : "img")." src=\"/board/{$uri[2]}/thread/$thread_no/media/$file_num.$file_type\" />
+	*/
+?>
