@@ -26,13 +26,8 @@
 				background	: #FFFFFF;
 			}
 		</style>
-
-		<?php
-		?>
 	</head>
 
 	<body>
-		<div id='make-post' onclick=openForm()>[ <a href="#">Make a Post</a> ]</div>
-		<?php include("$doc_root$struct_loc/post_form.phtml"); ?>
 	</body>
 </html>

@@ -120,12 +120,30 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 	height		: auto;
 }
 
+/* 404 and 500 */
+.error-page {
+	display			: flex;
+	flex-direction	: column;
+}
+.error-page, .error, .lost-image, .escape-nav {
+	width	: fit-content;
+	height	: fit-content;
+	margin	: 5px auto;
+
+}
+
 /* Home Index */
 
 /* Board */
 .board {
 	width	: 100%;
 	height	: fit-content;
+}
+
+.board-options {
+	width	: fit-content;
+	height	: fit-content;
+	margin	: 5px;
 }
 
 /* Catalog */
@@ -206,6 +224,12 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 .thread {
 	width	: calc(100% - 10px);
 	height	: fit-content;
+	padding	: 5px;
+}
+
+.thread-options {
+	width	: fit-content;
+	height	: fit-content;
 	margin	: 5px;
 }
 
@@ -219,7 +243,7 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 .post-container {
 	width	: fit-content;
 	height	: fit-content;
-	margin	: 5px;
+	margin	: 10px;
 	gap		: 5px;
 }
 

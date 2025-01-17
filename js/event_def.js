@@ -16,33 +16,10 @@ function closeForm() {
 	$('.form').hide();
 }
 
-// Dragging event
-let dragging	= false;
-let offX, offY;
+function refreshThread() {
+	console.log("Refreshing Thread");
+}
 
-$(document).ready(() => {
-	$('.form-title').on("mousedown", function(e) {
-		dragging = true;
-
-		offX = e.pageX - $('.form').offset().left;
-		offY = e.pageY - $('.form').offset().top;
-
-		$('.form').css('cursor', 'grabbing');
-	});
-
-	$(document).on('mousemove', function (e) {
-		if (dragging) {
-			$('.form').css({
-				left	: (e.pageX - offX) + 'px',
-				top		: (e.pageY - offY) + 'px',
-			});
-		}
-	});
-
-	$(document).on('mouseup', function(e) {
-		if (dragging) {
-			dragging = false;
-			$('.form').css("cursor", "default");
-		}
-	});
-});
+function refreshBoard() {
+	console.log("Refreshing Board");
+}

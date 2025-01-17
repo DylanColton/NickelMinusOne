@@ -15,6 +15,8 @@
 		while (count($board_threads) < 10 * ($page_num - 1))
 			$page_num--;
 
+		echo "<div class=board-options>[ <a href=catalog>Catalog</a> / <a href=#bottom>Bottom</a> / <a href=# onclick=refreshBoards()>Refresh</a> ]</div><hr/>";
+		
 		if ($page_num == 0) {
 			// Print all live threads
 			foreach ($board_threads as $thread) {
@@ -27,6 +29,8 @@
 				include("$doc_root$struct_loc/thread.phtml");
 			}
 		}
+
+		echo "<hr/><div class=board-options>[ <a href=catalog>Catalog</a> / <a href=#bottom>Bottom</a> / <a href=# onclick=refreshBoards()>Refresh</a> ]</div>";
 
 		mysqli_close($conn);
 	?>

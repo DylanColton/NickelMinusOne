@@ -18,13 +18,13 @@
 		$thread_query	= "INSERT INTO Thread (ThreadNo, Board, LastUpdate, PruneOrDeleted)
 			VALUES ($new_post_id, '$board', '$datetime', 0)";
 		
-		mysqli_query($conn, $thread_query); // WORKS
+		mysqli_query($conn, $thread_query);
 
 		list($media_name, $media_type, $media_size, $media_dim) = collectMetaData($_FILES['uploaded_file'], $images, $audio, $videos);
 		$media_query	= "INSERT INTO Media (MediaName, Type, Size, Dim)
 			VALUES ('$media_name', '$media_type', $media_size, '$media_dim');";
 
-		mysqli_query($conn, $media_query); // WORKS
+		mysqli_query($conn, $media_query);
 
 		$media_id = mysqli_insert_id($conn);
 		$post_query		= "INSERT INTO Post (Type, ThreadID, Title, Name, PostTime, Media, Message)

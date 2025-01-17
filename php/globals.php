@@ -25,6 +25,8 @@ $style_loc		= "/css/";
 $favicon_loc	= "/assets/favicons/";
 
 $doc_root		= $_SERVER['DOCUMENT_ROOT'];
+// $uri is gonna need some conditioning before it explodes the request uri.
+// Wanna redirect before issues emerge and stuff
 $uri			= explode("/", $_SERVER['REQUEST_URI']);
 $ignore			= [
 	'.',

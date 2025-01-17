@@ -33,7 +33,15 @@
 			} else if (str_contains($uri_loc, 'janny-station')) {
 				include("$doc_root$struct_loc/janny.phtml");
 			} else if ($err == 404) {
-				include("$doc_root$struct_log/404.phtml");
+				$lost_images = scandir("$doc_root/assets/images/lost/");
+				$lost_images = array_splice($lost_images, 2);
+				$lost_image = $lost_images[floor(rand(0, sizeof($lost_images)-1))];
+
+				echo "<div class=error-page>
+					<h2 class=error>Couldn't find that, sorry</h2>
+					<img class=lost-image src='assets/images/lost/$lost_image' />
+					<div class=escape-nav>[ <a href=/>Home</a> ]</div>
+				</div>";
 			} else if ($err == 500) {
 				echo "<span class=error>The programmer is having a bad day</span>";
 			} else {

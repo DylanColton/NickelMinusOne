@@ -4,8 +4,12 @@
 		$sql = "SELECT * FROM Post
 			WHERE ThreadID = $thread_no";
 		$thread = mysqli_query($conn, $sql)->fetch_all();
-		
+
+		$return_loc = implode("/", [$uri[0], $uri[1], $uri[2]]);
+
 		if ($uri[3] == "thread") {
+			echo "<div class=thread-options>[ <a href=$return_loc>Return</a> / <a href=$return_loc/catalog>Catalog</a> / <a href=#bottom>Bottom</a> / <a href=# onclick=refreshThread()>Refresh</a> ]</div><hr/>";
+
 			foreach ($thread as $post) {
 				$num		= $post[0];
 				$op			= $post[1];
@@ -27,6 +31,8 @@
 				$replies	= mysqli_query($conn, "SELECT * FROM Reference WHERE Reference = $num")->fetch_all();
 				include("$doc_root$struct_loc/post.phtml");
 			}
+
+			echo "<hr/><div class=thread-options>[ <a href=$return_loc>Return</a> / <a href=$return_loc/catalog>Catalog</a> / <a href=#top>Top</a> / <a href=# onclick=refreshThread()>Refresh</a> ]</div>";
 
 			include("$doc_root$struct_loc/post_form.phtml");
 
