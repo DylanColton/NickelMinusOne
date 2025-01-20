@@ -133,6 +133,37 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 }
 
 /* Home Index */
+#board-links, #promoted-threads, #web-stats {
+	display			: flex;
+	flex-direction	: column;
+	width			: fit-content;
+	height			: fit-content;
+	padding			: 10px;
+	border			: 1px solid #000000;
+	margin			: 20px auto;
+}
+
+.div-title, .users-online, .thread-num, .media-size, .board-link {
+	width	: fit-content;
+	height	: fit-content;
+}
+
+#promoted-threads {
+	flex-direction	: unset;
+	flex-wrap		: wrap;
+	align-items		: center;
+	justify-content	: center;
+	width			: 100vw;
+	height			: auto;
+}
+
+#web-stats {
+	display	: block;
+}
+
+.div-title {
+	margin	: 0 auto;
+}
 
 /* Board */
 .board {

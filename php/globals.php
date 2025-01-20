@@ -15,6 +15,13 @@ $cookie_options = array(
 	'samesite'	=> 'Lax'
 );
 
+$redis = new Redis();
+$redis->connect('127.0.0.1', 6379);
+
+$user_id = session_id();
+$redis->set($user_id, time());
+$redis->expire($user_id, 300); 
+
 // Locations
 $struct_loc		= "/assets/phtml/struct";
 $static_loc		= "/assets/phtml/static";
@@ -59,6 +66,7 @@ $default_style	= "001-template.css";
 $charset		= "UTF-8";
 $authour		= "\"Dylan Colton\"";
 $desc			= "\"\"";
+$status			= 200;
 
 $styles			= array_slice(scandir("$doc_root/css"), 2);
 for ($i = 0; $i < sizeof($styles); $i++) {

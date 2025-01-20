@@ -7,8 +7,8 @@
 
 		foreach($threads as $thread) {
 			$post			= mysqli_query($conn, "SELECT Title, Media, Message FROM Post WHERE PostID={$thread[0]}")->fetch_all()[0];
-			$num_replies	= count(mysqli_query($conn, "SELECT PostID FROM Post WHERE ThreadID={$thread[0]}")->fetch_all()) - 1;
-			$num_media		= count(mysqli_query($conn, "SELECT PostID FROM Post WHERE ThreadID={$thread[0]} AND NOT Media=0")->fetch_all()[0]);
+			$num_replies	= mysqli_query($conn, "SELECT COUNT(*) FROM Post WHERE ThreadID={$thread[0]}")->fetch_all()[0][0] - 1;
+			$num_media		= mysqli_query($conn, "SELECT COUNT(*) FROM Post WHERE ThreadID={$thread[0]} AND NOT Media=0")->fetch_all()[0][0];
 			$media_quer		= mysqli_query($conn, "SELECT MediaID, Type FROM Media WHERE MediaID={$post[1]}")->fetch_all()[0];
 
 			$thread_id		= $thread[0];
