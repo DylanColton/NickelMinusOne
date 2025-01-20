@@ -7,10 +7,13 @@ DEFINE("ONE_WEEK",		7	* ONE_DAY);
 DEFINE("ONE_MONTH",		4	* ONE_WEEK);
 DEFINE("ONE_YEAR",		12	* ONE_MONTH);
 
+DEFINE("WEBSITE",		"localhost");
+
 // Cookie
 $cookie_options = array(
 	'expires'	=> time() + ONE_YEAR,
 	'path'		=> "/",
+	'domain'	=> WEBSITE,
 	'secure'	=> false,
 	'samesite'	=> 'Lax'
 );
@@ -62,7 +65,7 @@ $lang			= "en";
 $num_change_log	= 3;
 $num_promo		= 10;
 $struct			= "structure.css";
-$default_style	= "001-template.css";
+$default_style	= "000-template.css";
 $charset		= "UTF-8";
 $authour		= "\"Dylan Colton\"";
 $desc			= "\"\"";
@@ -75,9 +78,11 @@ for ($i = 0; $i < sizeof($styles); $i++) {
 }
 $styles			= array_values($styles);
 if (!isset($_COOKIE['style'])) {
-	setcookie('style', $default_style, $cookie_option);
+	setcookie('style', $default_style, $cookie_options);
 	$_COOKIE['style'] = $default_style;
 }
+
+$style = $_COOKIE['style'];
 
 $conn;
 include("$doc_root/sql/db_init.php");

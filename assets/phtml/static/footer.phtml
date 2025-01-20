@@ -5,11 +5,11 @@
 
 	<hr/>
 
-	<div id=style-select>
+	<div id=style-select onchange="changeStyle(event)">
 		<select>
 			<?php
 				for ($i = 0; $i < sizeof($styles); $i++)
-					echo "<option value={$styles[$i]}>{$styles[$i]}</option>";
+					echo "<option value={$styles[$i]}".(($_COOKIE['style']==$styles[$i]) ? " selected" : "").">{$styles[$i]}</option>";
 			?>
 		</select>
 	</div>

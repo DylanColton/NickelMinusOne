@@ -23,3 +23,16 @@ function refreshThread() {
 function refreshBoard() {
 	console.log("Refreshing Board");
 }
+
+function changeStyle(event) {
+	var style = event.target.value;
+	$.ajax({
+		url		: "/php/changeStyle.php",
+		data	: {
+			style	: style,
+			return	: "/"
+		}
+	}).done(() => {
+		$('#style').attr('href', `/css/${style}`);
+	});
+}
