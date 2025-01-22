@@ -2,8 +2,9 @@ CREATE DATABASE nmo;
 USE nmo;
 
 CREATE TABLE Board (
-	BoardName	VARCHAR(4)		NOT NULL,
-	BoardDesc	VARCHAR(255)	NOT NULL,
+	BoardName	VARCHAR(4)					NOT NULL,
+	BoardDesc	VARCHAR(255)				NOT NULL,
+	PruneLimit	INT				UNSIGNED	NOT NULL	DEFAULT(86400),
 	PRIMARY KEY (BoardName)
 );
 
