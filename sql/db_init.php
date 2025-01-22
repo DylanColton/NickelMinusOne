@@ -48,7 +48,7 @@ try {
 		CREATE TABLE ".BOARDS." (
 			BoardName	VARCHAR(4)		NOT NULL,
 			BoardDesc	VARCHAR(255)	NOT NULL,
-			PruneLimit	INT				UNSIGNED	NOT NULL	DEFAULT(86400),
+			PruneLimit	INT				UNSIGNED	NOT NULL	DEFAULT(604800),
 			PRIMARY KEY (BoardName)
 		)";
 	if (!mysqli_query($conn, $sql))

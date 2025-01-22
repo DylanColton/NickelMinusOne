@@ -3,7 +3,7 @@
 		// Collect all the active threads
 		$board = explode("/", $_SERVER['REQUEST_URI'])[2];
 		$conn = mysqli_connect(SERVER, USER, PSWD, DATABASE);
-		$threads = mysqli_query($conn, "SELECT ThreadNo FROM Thread WHERE Board='$board' ORDER BY LastUpdate DESC")->fetch_all();
+		$threads = mysqli_query($conn, "SELECT ThreadNo FROM Thread WHERE PruneOrDeleted=0 AND Board='$board' ORDER BY LastUpdate DESC")->fetch_all();
 
 		foreach($threads as $thread) {
 			$post			= mysqli_query($conn, "SELECT Title, Media, Message FROM Post WHERE PostID={$thread[0]}")->fetch_all()[0];

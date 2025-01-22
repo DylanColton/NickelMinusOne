@@ -1,9 +1,12 @@
 <?php
-	$conn			= mysqli_connect(SERVER, USER, PSWD, DATABASE);
+	require("{$_SERVER['DOCUMENT_ROOT']}/php/globals.php");
+	ini_set('error_log', '/var/www/nickelminusone/php/pruning.log');
 
-	$boards = mysqli_query($conn, "SELECT * FROM Boards");
+	$conn	= mysqli_connect(SERVER, USER, PSWD, DATABASE);
+
+	$boards = mysqli_query($conn, "SELECT * FROM Board");
 	while ($board = mysqli_fetch_assoc($boards)) {
-		$threads	= mysqli_query($conn, "SELECT * FROM Thread WHERE Board=$board ORDER BY LastUpdate DESC")->fetch_all();
+		$threads	= mysqli_query($conn, "SELECT * FROM Thread WHERE Board='{$board['BoardName']}' ORDER BY LastUpdate DESC");
 
 		$ripe = 0;
 
@@ -15,8 +18,8 @@
 			$elapsed = $now - $date->getTimestamp();
 			
 			if ($elapsed > $board['PruneLimit'] || $ripe >= 100) {
-				mysqli_query($conn, "UPDATE Thread WHERE SET PruneOrDeleted=1 ThreadNo={$thread['ThreadNo']}");
-				exec("rm -rf ".escapeshellarg("$doc_root/board/$board/thread/{$thread['ThreadNo']}"), $output, $result);
+				mysqli_query($conn, "UPDATE Thread SET PruneOrDeleted=1 WHERE ThreadNo={$thread['ThreadNo']}");
+				exec("rm -rf ".escapeshellarg("$doc_root/board/{$board['BoardName']}/thread/{$thread['ThreadNo']}"), $output, $result);
 
 				if ($result !== 0) {
 					error_log("Failed to remove directory");

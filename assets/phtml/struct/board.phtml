@@ -3,7 +3,7 @@
 		// Here we will get the page number
 		$page_num = (isset($_GET['page']) ? $_GET['page'] : 1);
 		$sql = "SELECT ThreadNo FROM Thread
-			WHERE PruneOrDeleted=FALSE
+			WHERE PruneOrDeleted=0
 			ORDER BY LastUpdate DESC";
 		$conn = mysqli_connect(SERVER, USER, PSWD, DATABASE);
 		try {
