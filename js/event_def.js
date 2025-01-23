@@ -38,8 +38,14 @@ function changeStyle(event) {
 }
 
 function swapMedia(event) {
-	let reloc	= event.target.src.replace(/(https|http):\/\//, "").replace(/[^\/]+/m, "").replace(/[^\/]+$/m, "");
-	let media	= event.target.src.replace(/.*\//g, "");
+	event.preventDefault();
+	let target	= $(event.target);
+
+	if (target[0].tagName !== "IMG")
+		target = target.parent().children().eq(1);
+
+	let reloc	= target[0].src.replace(/(https|http):\/\//, "").replace(/[^\/]+/m, "").replace(/[^\/]+$/m, "");
+	let media	= target[0].src.replace(/.*\//g, "");
 	let isThumb	= (media.match(/_thumb\./) ? true : false);
 
 	$.ajax({
@@ -51,6 +57,6 @@ function swapMedia(event) {
 			media	: media
 		}
 	}).done((output) => {
-		$(event.target).parent().html(output).attr("class", (isThumb ? "file" : "file file-mini"));
+		target.parent().html(output).attr("class", (isThumb ? "file" : "file file-mini"));
 	});
 }
