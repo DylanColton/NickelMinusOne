@@ -69,8 +69,8 @@ $message = preg_replace("/\n/", "<br/>", $message);
 					<span class=\"file-dim-size\">($file_dim) $formattedSize</span>
 				</div>
 
-				<div class=\"file\">
-						<img src=\"/board/{$uri[2]}/thread/$thread_no/media/".$file_num."_thumb.".(in_array($file_type, $images) ? $file_type : "jpg")."\" />
+				<div class=\"file file-mini\">
+					<img onclick=swapMedia(event) src=\"/board/{$uri[2]}/thread/$thread_no/media/".$file_num."_thumb.".(in_array($file_type, $images) ? $file_type : "jpg")."\" />
 				</div>";
 			}
 		?>

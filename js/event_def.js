@@ -36,3 +36,21 @@ function changeStyle(event) {
 		$('#style').attr('href', `/css/${style}`);
 	});
 }
+
+function swapMedia(event) {
+	let reloc	= event.target.src.replace(/(https|http):\/\//, "").replace(/[^\/]+/m, "").replace(/[^\/]+$/m, "");
+	let media	= event.target.src.replace(/.*\//g, "");
+	let isThumb	= (media.match(/_thumb\./) ? true : false);
+
+	$.ajax({
+		url		: '/php/swapMedia.php',
+		method	: 'POST',
+		data	: {
+			reloc	: reloc,
+			thumb	: isThumb,
+			media	: media
+		}
+	}).done((output) => {
+		$(event.target).parent().html(output).attr("class", (isThumb ? "file" : "file file-mini"));
+	});
+}

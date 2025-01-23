@@ -329,7 +329,10 @@ div, span, p, a, h1, h2, h3, h4, h5, h6, label, input, form {
 	height			: fit-content;
 	margin			: 5px 0;
 	margin-right	: 10px;
-	float			: left
+}
+
+.file-mini {
+	float			: left;
 }
 
 .message {

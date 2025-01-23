@@ -1,11 +1,26 @@
 <?php
 	require("{$_SERVER['DOCUMENT_ROOT']}/php/globals.php");
 
+	function escapeSQL($entry) {
+		$escapeChars = [
+			"'"		=> "\'",
+			"\\"	=> "\\\\",
+			"\0"	=> "\\0",
+			"\r"	=> "\\r"
+		];
+
+		foreach ($escapeChars as $k => $v)
+			$entry = preg_replace("/".preg_quote($k)."/", $v, $entry);
+
+		return $entry;
+	}
+
 	$conn = mysqli_connect(SERVER, USER, PSWD, DATABASE);
 
 	$datetime		= date('Y/m/d(D)H:i:s');
 	$board			= $_POST['board'];
 
+	// MOVE THE INSERTS TO AFTER THE FILE STRUCTURE IS MADE
 	if ($_POST['make'] == "THREAD") {
 		// Make a new thread
 		$post_title		= $_POST['title'];
@@ -21,12 +36,18 @@
 		mysqli_query($conn, $thread_query);
 
 		list($media_name, $media_type, $media_size, $media_dim) = collectMetaData($_FILES['uploaded_file'], $images, $audio, $videos);
+		$media_name = escapeSQL($media_name);
 		$media_query	= "INSERT INTO Media (MediaName, Type, Size, Dim)
 			VALUES ('$media_name', '$media_type', $media_size, '$media_dim');";
 
 		mysqli_query($conn, $media_query);
 
 		$media_id = mysqli_insert_id($conn);
+
+		// Clean all the weird text
+		$post_title		= escapeSQL($post_title);
+		$post_name		= escapeSQL($post_name);
+		$post_message	= escapeSQL($post_message);
 		$post_query		= "INSERT INTO Post (Type, ThreadID, Title, Name, PostTime, Media, Message)
 			VALUES (1, $new_post_id, '$post_title', '$post_name', '$datetime', $media_id, '$post_message')";
 
