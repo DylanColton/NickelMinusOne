@@ -87,4 +87,5 @@ $style = $_COOKIE['style'];
 $conn;
 include("$doc_root/sql/db_init.php");
 include("$doc_root/php/handle_posted_media.php");
+//include("$doc_root/php/pruneThread.php");
 ?>

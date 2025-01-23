@@ -15,6 +15,7 @@
 	function resizeImage($file, $videoes, $audio, $targetLen = 150) {
 		foreach ($audio as $needle) {
 			if (str_contains($file, $needle)) {
+				exec("cp {$_SERVER['DOCUMENT_ROOT']}/assets/images/audio.png ".preg_replace("/(\d+)\..+/", '${1}_thumb.jpg', $file));
 				return;
 			}
 		}
@@ -104,13 +105,13 @@
 		if (in_array($type, $images)) {
 			$t_dim = getimagesize($file['tmp_name']);
 			$dim = "{$t_dim[0]}x{$t_dim[1]}";
-		} elseif (in_array($type, $audio)) {
+		} elseif (in_array($type, $videos)) {
 			$v_frame = extractFrame($file['tmp_name'], "temp/place/");
 			$t_dim = getimagesize($v_frame);
 			exec("rm ".escapeshellarg($v_frame));
 			$dim = "{$t_dim[0]}x{$t_dim[1]}";
-		} else if (in_array($type, $videos)) {
-			$dim = "0x0";
+		} else if (in_array($type, $audio)) {
+			$dim = "";
 		}
 		return [$name, $type, $size, $dim];
 	}

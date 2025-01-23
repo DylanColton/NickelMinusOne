@@ -60,7 +60,7 @@
 		move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $new_file);
 		resizeImage($new_file, $videos, $audio);
 
-		header("Location: /board/$board/thread/$new_post_id");
+		$thread_no = $new_post_id;
 	} else if ($_POST['make'] == "POST") {
 		// Make a new post
 		$post_name		= $_POST['name'];
@@ -85,9 +85,9 @@
 			VALUES (0, $thread_no, '$post_name', '$datetime', $media_id, '$post_message')";
 
 		mysqli_query($conn, $post_query);
-
-		header("Location: /board/$board/thread/$thread_no");
 	} else {
 		echo "Something unexpected happened. You wouldn't happen to have tried to mess with my system, would you?";
 	}
+
+	header("Location: /board/$board/thread/$thread_no");
 ?>
