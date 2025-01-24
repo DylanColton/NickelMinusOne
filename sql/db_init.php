@@ -27,7 +27,8 @@ try {
 	for ($i = 0; $i < count($dbs); $i++)
 		$dbs[$i] = $dbs[$i][0];
 
-	throw new Exception("Client nor Server has any such permission");
+	if (!in_array(DATABASE, $dbs))
+		mysqli_query($conn, "CREATE DATABASE nmo;");
 } catch (Exception $e) {
 	if (!in_array(DATABASE, $dbs))
 		echo "Database ".DATABASE." doesn't exist. Exception occurred - $e";
@@ -46,9 +47,11 @@ try {
 
 	$sql = "
 		CREATE TABLE ".BOARDS." (
-			BoardName	VARCHAR(4)		NOT NULL,
-			BoardDesc	VARCHAR(255)	NOT NULL,
-			PruneLimit	INT				UNSIGNED	NOT NULL	DEFAULT(604800),
+			BoardName		VARCHAR(4)		NOT NULL,
+			BoardDesc		VARCHAR(255)	NOT NULL,
+			PruneLimit		INT				UNSIGNED	NOT NULL	DEFAULT(604800),
+			FileSizeLimit	INT				UNSIGNED	NOT NULL	DEFAULT(5000000),
+			ThreadBumpLimit	INT				UNSIGNED	NOT NULL	DEFAULT(300),
 			PRIMARY KEY (BoardName)
 		)";
 	if (!mysqli_query($conn, $sql))
@@ -75,6 +78,19 @@ try {
 		die("Could not make table ".MEDIA." ".mysqli_error($conn));
 } catch (Exception $e) {
 	die("Could not make table ".MEDIA." - $e");
+}
+try {
+	$sql = "INSERT INTO Media (MediaID, MediaName, Type, Size, Dim)
+		VALUES (0, '', '', 0, '')";
+	mysqli_query($conn, $sql);
+
+	$sql = "UPDATE Media SET MediaID=0 WHERE MediaID=1";
+	mysqli_query($conn, $sql);
+
+	$sql = "ALTER TABLE Media AUTO_INCREMENT = 1;";
+	mysqli_query($conn, $sql);
+} catch (Exception $e) {
+	die("Could not insert query: $e");
 }
 media_exists:
 

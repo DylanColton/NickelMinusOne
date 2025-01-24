@@ -28,7 +28,11 @@
 
 		$post_message	=	$_POST['message'];
 
-		$new_post_id	= mysqli_query($conn, "SELECT PostID FROM Post ORDER BY PostID DESC LIMIT 1")->fetch_all()[0][0] + 1;
+		$res	= mysqli_query($conn, "SELECT PostID FROM Post ORDER BY PostID DESC LIMIT 1");
+		if ($res && $res->num_rows > 0)
+			$new_post_id = $res->fetch_accoc()['PostID'] + 1;
+		else
+			$new_post_id = 1;
 
 		$thread_query	= "INSERT INTO Thread (ThreadNo, Board, LastUpdate, PruneOrDeleted)
 			VALUES ($new_post_id, '$board', '$datetime', 0)";

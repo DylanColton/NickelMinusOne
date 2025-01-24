@@ -6,7 +6,7 @@ require("{$_SERVER['DOCUMENT_ROOT']}/php/globals.php");
 <html lang=<?php echo $lang; ?>>
 	<head>
 		<?php include("$doc_root$static_loc/head.phtml"); ?>
-		<script src="/js/janny_tools.js"></script>
+		<script src="/janny/janny_tools.js"></script>
 
 		<style>
 			/* General Table Container Styling */
@@ -77,11 +77,25 @@ require("{$_SERVER['DOCUMENT_ROOT']}/php/globals.php");
 				}
 			}
 
+			#control-panel {
+				width		: fit-content;
+				height		: fit-content;
+			}
+
 			#query-form {
-				width		: calc(100vw - 40px);
+				width		: calc(40vw - 40px);
 				min-height	: 300px;
 				height		: auto;
 				padding		: 40px;
+				float		: left;
+			}
+
+			#make-board {
+				width		: calc(40vw - 40px);
+				min-height	: 300px;
+				height		: auto;
+				padding		: 40px;
+				float		: right;
 			}
 
 			.table-columns {
@@ -97,15 +111,28 @@ require("{$_SERVER['DOCUMENT_ROOT']}/php/globals.php");
 
 			$Tables = mysqli_query($conn, "SHOW TABLES")->fetch_all();
 
-			echo "<div id=query-form>";
-				echo "<form id=query>";
-					echo "<select name=\"table\">";
-						foreach ($Tables as $table)
-							echo "<option value=\"{$table[0]}\"".($table[0] == "Board" ? ' selected' : "").">{$table[0]}</option>";
-					echo "</select>";
+			echo "<div id=control-panel>";
+				echo "<div id=query-form>";
+					echo "<form id=query method=post>";
+						echo "<select name=\"table\">";
+							foreach ($Tables as $table)
+								echo "<option value=\"{$table[0]}\"".($table[0] == "Board" ? ' selected' : "").">{$table[0]}</option>";
+						echo "</select>";
 
-					echo "<input type=submit onclick=fetchQuery(event)>";
-				echo "</form>";
+						echo "<input type=submit onclick=fetchQuery(event)>";
+					echo "</form>";
+				echo "</div>";
+				
+
+				echo "<div id=make-board>";
+					echo "<form method=post>";
+						echo "<input name=\"BoardName\"		type=text	placeholder=\"Board Name (Max. 4 characters)\">";
+						echo "<input name=\"Description\"	type=text	placeholder=\"Description\">";
+						echo "<input name=\"PruneLimit\"	type=number	placeholder=\"Prune Limit (Max. 2419200)\">";
+						echo "<input name=\"FileSizeLimit\"	type=number	placeholder=\"File Size Limit (Max. 5000000)\">";
+						echo "<input type=submit onclick=makeBoard(event)>";
+					echo "</form>";
+				echo "</div>";
 			echo "</div>";
 
 			$columns	= mysqli_query($conn, "SHOW COLUMNS FROM Board;")->fetch_all();

@@ -41,7 +41,7 @@ $num_users		= $redis->dbSize();
 $num_threads	= mysqli_query($conn, "SELECT Count(ThreadNo) FROM Thread WHERE NOT PruneOrDeleted=1")->fetch_all()[0][0];
 
 // Collect the total size of the hosted media
-$media_size		= mysqli_query($conn, "SELECT SUM(m.Size) AS TotalSize
+$media_size		= mysqli_query($conn, "SELECT COALESCE(SUM(m.Size), 0) AS TotalSize
 	FROM Media m
 	JOIN Post p ON m.MediaID=p.Media
 	JOIN Thread t ON p.ThreadID=t.ThreadNo

@@ -63,7 +63,7 @@ $message = preg_replace("/\n/", "<br/>", $message);
 
 	<div class="post-content">
 		<?php
-			if ($file_num != NULL) {
+			if ($file_num != 0) {
 				echo "<div class=\"file-info\">
 					<a class=\"filename\" href=\"/board/{$uri[2]}/thread/$thread_no/media/$file_num.$file_type\">$file_name</a>
 					<span class=\"file-dim-size\">($file_dim) $formattedSize</span>
@@ -75,14 +75,8 @@ $message = preg_replace("/\n/", "<br/>", $message);
 			}
 		?>
 
-		<div class="message">
+		<div class="message<?php echo ($file_num == 0 ? " no-or-below-file" : ""); ?>">
 			<?php echo $message; ?>
 		</div>
 	</div>
 </div>
-
-<?php
-	/*
-						<".(in_array($file_type, $videos) ? "video" : "img")." src=\"/board/{$uri[2]}/thread/$thread_no/media/$file_num.$file_type\" />
-	*/
-?>
