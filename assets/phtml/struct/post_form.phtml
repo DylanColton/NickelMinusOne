@@ -11,11 +11,11 @@
 			echo "<input type='text' name='thread_no' value='{$uri[4]}' required hidden>";
 	?>
 
-	<?php echo ($uri[3] == "thread" ? "" : "<input id=\"title\" type=\"text\" name=\"title\" placeholder=\"Title\">"); ?>
+	<?php echo ($uri[3] == "thread" ? "" : "<input id=\"title\" type=\"text\" name=\"title\" placeholder=\"Title\" required>"); ?>
 
 	<input id="name" type="text" name="name" placeholder="Name">
 
-	<textarea id="message" type="text" name="message" placeholder="Message"></textarea>
+	<textarea id="message" type="text" name="message" placeholder="Message" required></textarea>
 
 	<input id="file" type="file" name="uploaded_file" <?php echo ($uri[3] == "thread" ? "" : "required"); ?>>
 

@@ -30,7 +30,7 @@
 
 		$res	= mysqli_query($conn, "SELECT PostID FROM Post ORDER BY PostID DESC LIMIT 1");
 		if ($res && $res->num_rows > 0)
-			$new_post_id = $res->fetch_accoc()['PostID'] + 1;
+			$new_post_id = $res->fetch_assoc()['PostID'] + 1;
 		else
 			$new_post_id = 1;
 

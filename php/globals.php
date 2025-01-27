@@ -68,7 +68,7 @@ $struct			= "structure.css";
 $default_style	= "000-template.css";
 $charset		= "UTF-8";
 $authour		= "\"Dylan Colton\"";
-$desc			= "\"\"";
+$desc			= "\"Welcome to NMO, if you get the reference, message me\"";
 $status			= 200;
 
 $styles			= array_slice(scandir("$doc_root/css"), 2);
